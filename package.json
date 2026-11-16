@@ -1,6 +1,7 @@
 {
+  "activationEvents": ["onStartupFinished"],
   "name": "nextcode",
-  "displayName": "NEXTCODE",
+  "displayName": "NextCode",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -9,16 +10,20 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "nextcode.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
+  { "command": "nextcode.toggle", "title": "NextCode: Toggle Completions" }
+],
+  "configuration": {
+    "title": "NextCode",
+    "properties": {
+      "nextcode.enabled": { "type": "boolean", "default": true },
+      "nextcode.endpoint": { "type": "string", "default": "http://localhost:11434/api/generate" },
+      "nextcode.model": { "type": "string", "default": "qwen2.5-coder:1.5b" }
+    }
+  }
+},
   "scripts": {
     "vscode:prepublish": "npm run package",
     "compile": "npm run check-types && npm run lint && node esbuild.js",
